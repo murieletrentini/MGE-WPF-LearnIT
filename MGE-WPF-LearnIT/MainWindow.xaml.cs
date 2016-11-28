@@ -14,6 +14,7 @@ namespace MGE_WPF_LearnIT
     public partial class MainWindow : Window {
         // ToDo: possibly move this plus adding removing CardSets/Cards ect to App.xaml.cs
         private ObservableCollection<CardSet> sets = new ObservableCollection<CardSet>();
+        private CardSet currentSet;
 
         public MainWindow() {
             InitializeComponent();
@@ -51,10 +52,15 @@ namespace MGE_WPF_LearnIT
         }
 
         private void displaySelectedCardSet(object sender, MouseButtonEventArgs e) {
-            CardSet currentSet = (CardSet) CardSetListView.SelectedItems[0];
+            currentSet = (CardSet) CardSetListView.SelectedItems[0];
             CardListView.Items.Clear();
-            foreach (Card card in currentSet.getCards()) {
-                CardListView.Items.Add(card);
+            if (currentSet.getCards().Count == 0) {
+                // ToDo: Find better way to do this!
+                CardListView.Items.Add(new Card("No Cards to display", ""));
+            } else {
+                foreach (Card card in currentSet.getCards()) {
+                    CardListView.Items.Add(card);
+                }
             }
         }
 
