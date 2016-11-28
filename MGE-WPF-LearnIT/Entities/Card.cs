@@ -8,7 +8,12 @@ namespace MGE_WPF_LearnIT.Entities
 {
     public class Card
     {
-        public String FrontSide { get; set; }
-        public String BackSide { get; set; }
+        public String Front { get; set; }
+        public String Back { get; set; }
+
+        public Card(String front, String back) {
+            Front = front;
+            Back = back;
+        }
     }
 }

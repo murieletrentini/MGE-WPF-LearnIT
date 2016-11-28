@@ -7,15 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="700">
     <DockPanel>
-        <Menu IsMainMenu="True" DockPanel.Dock="Top">
-            <MenuItem Header="_Sets" />
-            <MenuItem Header="_Set" />
-            <MenuItem Header="_Play" />
-        </Menu>
         <StackPanel DockPanel.Dock="Left"
                     Width="150">
+            <Button Name="AddCardSet" Click="AddCardSet_Click">Add Set</Button>
             <TextBlock HorizontalAlignment="Center">My Sets:</TextBlock>
-            <ListView x:Name="listView">
+            <ListView x:Name="CardSetListView" MouseLeftButtonUp="displaySelectedCardSet">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Set" DisplayMemberBinding="{Binding Name}"/>
@@ -24,6 +20,21 @@
                 </ListView.View>
             </ListView>
         </StackPanel>
-        <DockPanel DockPanel.Dock="Top"></DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <StackPanel Name="Menu" DockPanel.Dock="Top" Orientation="Horizontal">
+                <TextBlock Name="CardSetTitle">Title</TextBlock>
+                <Button Click="AddCard">Add Card</Button>
+                <Button>Remove Set</Button>
+                <Button>Play Mode</Button>
+            </StackPanel>
+            <ListView x:Name="CardListView">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Front" DisplayMemberBinding="{Binding Front}"/>
+                        <GridViewColumn Header="Back" DisplayMemberBinding="{Binding Back}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
     </DockPanel>
 </Window>

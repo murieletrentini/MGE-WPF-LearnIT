@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,12 @@ namespace MGE_WPF_LearnIT.Entities
 {
     public class CardSet
     {
-        private List<Card> cards = new List<Card>();
+        private ObservableCollection<Card> cards = new ObservableCollection<Card>();
+
         public CardSet(String name) {
-            this.Name = name;
+            Name = name;
         }
-        public List<Card> getCards() {
+        public ObservableCollection<Card> getCards() {
             return cards;
         }
         public void addCard(Card card) {
