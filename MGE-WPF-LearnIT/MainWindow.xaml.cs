@@ -11,21 +11,24 @@ namespace MGE_WPF_LearnIT
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window {
-        // ToDo: possibly move this plus adding removing CardSets/Cards ect to App.xaml.cs
-        private ObservableCollection<CardSet> sets = new ObservableCollection<CardSet>();
+    public partial class MainWindow : Window {                                       
         private CardSet currentSet;
+        private ViewModel vm;
 
         public MainWindow() {
             InitializeComponent();
 
-            setUpCardSets();
+            vm = new ViewModel();
+
+            vm.setUpCardSets();
+
+            DataContext = vm;
 
             // Populate list
             displayAllCardSets();
 
             // Listens for Changes in CardSet-Collection
-            sets.CollectionChanged += CardSetsChanged;
+            vm.getSets().CollectionChanged += CardSetsChanged;
         }
 
         private void CardSetsChanged(object sender, NotifyCollectionChangedEventArgs e) {
@@ -34,22 +37,17 @@ namespace MGE_WPF_LearnIT
 
         private void displayAllCardSets() {
             CardSetListView.Items.Clear();
-            if (sets.Count == 0) {
+            if (vm.getSets().Count == 0) {
                 // ToDo: Find better way to do this!
                 CardSetListView.Items.Add(new CardSet("No Sets to display"));
             } else {
-                foreach (CardSet set in sets) {
+                foreach (CardSet set in vm.getSets()) {
                     CardSetListView.Items.Add(set);
                 }
             }
         }
 
-        private void setUpCardSets() {
-           // ToDo: possibly change to Database Access
-            sets.Add(new CardSet("Englisch Voci"));
-            sets.Add(new CardSet("Franz Voci"));
-            sets[0].addCard(new Card("FrontTest","BackTest"));     
-        }
+        
 
         private void displaySelectedCardSet(object sender, MouseButtonEventArgs e) {
             currentSet = (CardSet) CardSetListView.SelectedItems[0];
@@ -64,17 +62,17 @@ namespace MGE_WPF_LearnIT
             }
         }
 
-        private void AddCard(object sender, RoutedEventArgs e) {
+        private void AddCardEvent(object sender, RoutedEventArgs e) {
             if (CardSetListView.SelectedItems.Count > 0) {
                 CardSet currentSet = (CardSet)CardSetListView.SelectedItems[0];
-                AddCard addCardWindow = new AddCard(currentSet);
+                AddCardWindow addCardWindow = new AddCardWindow(currentSet);
                 addCardWindow.Show();
             }
             
         }
 
         private void AddCardSet_Click(object sender, RoutedEventArgs e) {
-            AddCardSet addCardSetWindow = new AddCardSet(sets);
+            AddCardSet addCardSetWindow = new AddCardSet(vm.getSets());
             addCardSetWindow.Show();
         }
     }

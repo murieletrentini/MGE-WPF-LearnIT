@@ -18,11 +18,11 @@ namespace MGE_WPF_LearnIT
     /// <summary>
     /// Interaction logic for AddCard.xaml
     /// </summary>
-    public partial class AddCard : Window
+    public partial class AddCardWindow : Window
     {
         private CardSet set;
 
-        public AddCard(CardSet set) {
+        public AddCardWindow(CardSet set) {
             this.set = set;
             InitializeComponent();
         }
