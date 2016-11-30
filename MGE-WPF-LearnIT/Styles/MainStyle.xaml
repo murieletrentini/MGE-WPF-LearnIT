@@ -3,7 +3,11 @@
                     xmlns:local="clr-namespace:MGE_WPF_LearnIT.Styles">
     <!-- Values -->
     <Color x:Key="MainColor">#3779ce</Color>
+    <Color x:Key="OkColor">#3fe244</Color>
+    <Color x:Key="CancelColor">#e82929</Color>
     <SolidColorBrush x:Key="MainBrush" Color="{StaticResource MainColor}"></SolidColorBrush>
+    <SolidColorBrush x:Key="OkBrush" Color="{StaticResource OkColor}"></SolidColorBrush>
+    <SolidColorBrush x:Key="CancelBrush" Color="{StaticResource CancelColor}"></SolidColorBrush>
     <FontFamily x:Key="MainFont">Segoe UI</FontFamily>
     <!-- Styles -->
     <Style x:Key="InputInList">
