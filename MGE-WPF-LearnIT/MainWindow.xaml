@@ -30,7 +30,7 @@
                 <local:IconTextButton BtnText="Remove Set" BtnIcon="Trash" Click="RemoveSetEvent"></local:IconTextButton>
                 <local:IconTextButton BtnText="Add Card" BtnIcon="Plus" Click="AddCardEvent"></local:IconTextButton>
                 <local:IconTextButton BtnText="Remove Card" BtnIcon="Trash" Click="RemoveCardEvent"></local:IconTextButton>
-                <local:IconTextButton BtnText="Play Mode" BtnIcon="Play"></local:IconTextButton>
+                <local:IconTextButton BtnText="Play Mode" BtnIcon="Play" Click="StartPlayMode"></local:IconTextButton>
             </StackPanel>
             <TextBox Name="CardSetTitle" DockPanel.Dock="Top" Text="{Binding Name}"></TextBox>
             <ListView x:Name="CardListView">
@@ -41,12 +41,11 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBox Text="{Binding Front}" Grid.Column="0" Style="{StaticResource InputInList}"></TextBox>
+                            <TextBox Text="{Binding Front, TargetNullValue='No Cards to Display'}" Grid.Column="0" Style="{StaticResource InputInList}"></TextBox>
                             <TextBox Text="{Binding Back}" Grid.Column="1" Style="{StaticResource InputInList}"></TextBox>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                
             </ListView>
         </DockPanel>
     </DockPanel>

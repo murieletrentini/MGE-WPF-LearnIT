@@ -57,5 +57,12 @@ namespace MGE_WPF_LearnIT
                 currentSet.getCards().Remove((Card)CardListView.SelectedItems[0]);  
             }
         }
+
+        private void StartPlayMode(object sender, RoutedEventArgs e) {
+            if (CardSetListView.SelectedItems.Count > 0) {
+                PlayMode playMode = new PlayMode(currentSet);
+                playMode.Show();
+            }
+        }
     }
 }
