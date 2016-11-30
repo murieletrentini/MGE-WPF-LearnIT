@@ -9,7 +9,6 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Left"
                     Width="150">
-            <Button Name="AddCardSet" Click="AddCardSet_Click">Add Set</Button>
             <TextBlock HorizontalAlignment="Center">My Sets:</TextBlock>
             <ListView x:Name="CardSetListView" MouseLeftButtonUp="displaySelectedCardSet">
                 <ListView.View>
@@ -22,11 +21,12 @@
         </StackPanel>
         <DockPanel DockPanel.Dock="Top">
             <StackPanel Name="Menu" DockPanel.Dock="Top" Orientation="Horizontal">
-                <Button Click="AddCardEvent">Add Card</Button>
-                <Button Click="RemoveSetEvent">Remove Set</Button>
-                <Button>Play Mode</Button>
+                <local:IconTextButton BtnText="Add Set" BtnIcon="Plus" Click="AddCardSet_Click"></local:IconTextButton>
+                <local:IconTextButton BtnText="Add Card" BtnIcon="Plus" Click="AddCardEvent"></local:IconTextButton>
+                <local:IconTextButton BtnText="Remove Set" BtnIcon="Trash" Click="RemoveSetEvent"></local:IconTextButton>
+                <local:IconTextButton BtnText="Play Mode" BtnIcon="Play"></local:IconTextButton>
             </StackPanel>
-            <TextBlock Name="CardSetTitle" DockPanel.Dock="Top" Text="{Binding Name}"></TextBlock>
+            <TextBox Name="CardSetTitle" DockPanel.Dock="Top" Text="{Binding Name}"></TextBox>
             <ListView x:Name="CardListView">
                 <ListView.View>
                     <GridView>

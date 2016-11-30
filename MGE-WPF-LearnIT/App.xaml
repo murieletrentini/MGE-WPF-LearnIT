@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:MGE_WPF_LearnIT"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/MainStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Styles/IconTextButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
