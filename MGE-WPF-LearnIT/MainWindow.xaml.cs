@@ -33,7 +33,7 @@ namespace MGE_WPF_LearnIT
 
         private void AddCardEvent(object sender, RoutedEventArgs e) {
             if (CardSetListView.SelectedItems.Count > 0) {
-                CardSet currentSet = (CardSet)CardSetListView.SelectedItems[0];
+                currentSet = (CardSet)CardSetListView.SelectedItems[0];
                 AddCardWindow addCardWindow = new AddCardWindow(currentSet);
                 addCardWindow.Show();
             }                  
@@ -42,6 +42,14 @@ namespace MGE_WPF_LearnIT
         private void AddCardSet_Click(object sender, RoutedEventArgs e) {
             AddCardSet addCardSetWindow = new AddCardSet(vm.getSets());
             addCardSetWindow.Show();
+        }
+
+        private void RemoveSetEvent(object sender, RoutedEventArgs e) {
+            if (CardSetListView.SelectedItems.Count > 0) {
+                vm.getSets().Remove(currentSet);
+                currentSet = null;      
+                CardListView.ItemsSource = null;
+            }
         }
     }
 }

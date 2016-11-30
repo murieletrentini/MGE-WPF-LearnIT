@@ -23,7 +23,7 @@
         <DockPanel DockPanel.Dock="Top">
             <StackPanel Name="Menu" DockPanel.Dock="Top" Orientation="Horizontal">
                 <Button Click="AddCardEvent">Add Card</Button>
-                <Button>Remove Set</Button>
+                <Button Click="RemoveSetEvent">Remove Set</Button>
                 <Button>Play Mode</Button>
             </StackPanel>
             <TextBlock Name="CardSetTitle" DockPanel.Dock="Top" Text="{Binding Name}"></TextBlock>
