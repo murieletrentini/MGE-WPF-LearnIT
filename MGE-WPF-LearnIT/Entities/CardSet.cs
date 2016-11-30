@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,11 @@ namespace MGE_WPF_LearnIT.Entities
 
         public CardSet(String name) {
             Name = name;
+            cards.CollectionChanged += cardsChanged;
+        }
+
+        private void cardsChanged(object sender, NotifyCollectionChangedEventArgs e) {
+            OnPropertyChanged(nameof(cardAmount));
         }
         public ObservableCollection<Card> getCards() {
             return cards;
@@ -33,11 +39,13 @@ namespace MGE_WPF_LearnIT.Entities
             }
         }
 
+        private int cardAmount;
         public int CardAmount {
             get
             {
-                return cards.Count;
-            }
+                cardAmount = cards.Count;
+                return cardAmount;
+            }     
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
