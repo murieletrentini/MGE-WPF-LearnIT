@@ -22,44 +22,16 @@ namespace MGE_WPF_LearnIT
 
             vm.setUpCardSets();
 
-            DataContext = vm;
-
-            // Populate list
-            displayAllCardSets();
-
-            // Listens for Changes in CardSet-Collection
-            vm.getSets().CollectionChanged += CardSetsChanged;
+            CardSetListView.ItemsSource = vm.getSets();      
         }
 
-        private void CardSetsChanged(object sender, NotifyCollectionChangedEventArgs e) {
-            displayAllCardSets();
-        }
-
-        private void displayAllCardSets() {
-            CardSetListView.Items.Clear();
-            if (vm.getSets().Count == 0) {
-                // ToDo: Find better way to do this!
-                CardSetListView.Items.Add(new CardSet("No Sets to display"));
-            } else {
-                foreach (CardSet set in vm.getSets()) {
-                    CardSetListView.Items.Add(set);
-                }
-            }
-        }
+       
 
         
 
         private void displaySelectedCardSet(object sender, MouseButtonEventArgs e) {
             currentSet = (CardSet) CardSetListView.SelectedItems[0];
-            CardListView.Items.Clear();
-            if (currentSet.getCards().Count == 0) {
-                // ToDo: Find better way to do this!
-                CardListView.Items.Add(new Card("No Cards to display", ""));
-            } else {
-                foreach (Card card in currentSet.getCards()) {
-                    CardListView.Items.Add(card);
-                }
-            }
+            CardListView.ItemsSource = currentSet.getCards(); 
         }
 
         private void AddCardEvent(object sender, RoutedEventArgs e) {
