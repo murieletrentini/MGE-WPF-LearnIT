@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:MGE_WPF_LearnIT"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="700">
+    <Window.Resources>
+        <DataTemplate x:Key="Input">
+            <TextBox Text="{Binding Name}" Style="{StaticResource InputInList}"></TextBox>
+        </DataTemplate>
+    </Window.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Left"
                     Width="150">
@@ -29,12 +34,19 @@
             </StackPanel>
             <TextBox Name="CardSetTitle" DockPanel.Dock="Top" Text="{Binding Name}"></TextBox>
             <ListView x:Name="CardListView">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Front" DisplayMemberBinding="{Binding Front}"/>
-                        <GridViewColumn Header="Back" DisplayMemberBinding="{Binding Back}"/>
-                    </GridView>
-                </ListView.View>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Text="{Binding Front}" Grid.Column="0" Style="{StaticResource InputInList}"></TextBox>
+                            <TextBox Text="{Binding Back}" Grid.Column="1" Style="{StaticResource InputInList}"></TextBox>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
             </ListView>
         </DockPanel>
     </DockPanel>
