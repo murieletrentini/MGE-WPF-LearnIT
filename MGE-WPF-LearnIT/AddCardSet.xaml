@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MGE_WPF_LearnIT"
         mc:Ignorable="d"
-        Title="AddCardSet" Height="100" Width="300" ResizeMode="NoResize">
+        Title="AddCardSet" Height="110" Width="300" ResizeMode="NoResize">
     <StackPanel>
         <TextBlock>Name your new Card Set:</TextBlock>
         <TextBox Name="CardSetTitle"></TextBox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Name="SaveCardSet" Click="SaveCardSet_Click">Save</Button>
-            <Button Name="Cancel" Click="Cancel_Click">Cancel</Button>
+            <local:IconTextButton BtnText="Save" BtnIcon="Save" Click="SaveCardSet_Click"></local:IconTextButton>
+            <local:IconTextButton BtnText="Cancle" BtnIcon="Ban" Click="Cancel_Click"></local:IconTextButton>
         </StackPanel>
     </StackPanel>
 </Window>

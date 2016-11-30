@@ -12,8 +12,8 @@
         <TextBlock DockPanel.Dock="Top">Back:</TextBlock>
         <TextBox DockPanel.Dock="Top" Name="Back" Height="80"></TextBox>
         <StackPanel DockPanel.Dock="Bottom" Name="ButtonGroup" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Save" Name="SaveCard" Click="SaveCard_Click"></Button>
-            <Button Content="Cancel" Name="CancelAddCard" Click="CancelAddCard_Click"></Button>
+            <local:IconTextButton BtnText="Save" BtnIcon="Save" Click="SaveCard_Click"></local:IconTextButton>
+            <local:IconTextButton BtnText="Cancle" BtnIcon="Ban" Click="CancelAddCard_Click"></local:IconTextButton>
         </StackPanel>
         <TextBlock DockPanel.Dock="Top"></TextBlock>
     </DockPanel>
