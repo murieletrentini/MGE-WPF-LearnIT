@@ -18,20 +18,17 @@ namespace MGE_WPF_LearnIT
         public MainWindow() {
             InitializeComponent();
 
-            vm = new ViewModel();
-
+            vm = new ViewModel(); 
             vm.setUpCardSets();
 
             CardSetListView.ItemsSource = vm.getSets();      
         }
-
-       
-
-        
+                            
 
         private void displaySelectedCardSet(object sender, MouseButtonEventArgs e) {
             currentSet = (CardSet) CardSetListView.SelectedItems[0];
-            CardListView.ItemsSource = currentSet.getCards(); 
+            CardListView.ItemsSource = currentSet.getCards();
+            CardSetTitle.DataContext = currentSet; 
         }
 
         private void AddCardEvent(object sender, RoutedEventArgs e) {
@@ -39,8 +36,7 @@ namespace MGE_WPF_LearnIT
                 CardSet currentSet = (CardSet)CardSetListView.SelectedItems[0];
                 AddCardWindow addCardWindow = new AddCardWindow(currentSet);
                 addCardWindow.Show();
-            }
-            
+            }                  
         }
 
         private void AddCardSet_Click(object sender, RoutedEventArgs e) {

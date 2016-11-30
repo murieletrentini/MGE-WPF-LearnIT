@@ -22,11 +22,11 @@
         </StackPanel>
         <DockPanel DockPanel.Dock="Top">
             <StackPanel Name="Menu" DockPanel.Dock="Top" Orientation="Horizontal">
-                <TextBlock Name="CardSetTitle">Title</TextBlock>
                 <Button Click="AddCardEvent">Add Card</Button>
                 <Button>Remove Set</Button>
                 <Button>Play Mode</Button>
             </StackPanel>
+            <TextBlock Name="CardSetTitle" DockPanel.Dock="Top" Text="{Binding Name}"></TextBlock>
             <ListView x:Name="CardListView">
                 <ListView.View>
                     <GridView>
