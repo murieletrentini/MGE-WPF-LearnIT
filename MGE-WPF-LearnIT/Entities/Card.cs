@@ -9,6 +9,11 @@ namespace MGE_WPF_LearnIT.Entities
 {
     public class Card : INotifyPropertyChanged
     {
+        public Card(String front, String back) {
+            Front = front;
+            Back = back;
+        }
+
         private String front;
         public String Front {
             get { return front; }
@@ -31,11 +36,8 @@ namespace MGE_WPF_LearnIT.Entities
             }
         }
 
-        public Card(String front, String back) {
-            Front = front;
-            Back = back;
-        }
-
+        public bool IsCorrect { get; set; }
+        
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(String name) {
             var handler = PropertyChanged;

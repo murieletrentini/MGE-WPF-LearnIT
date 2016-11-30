@@ -48,6 +48,16 @@ namespace MGE_WPF_LearnIT.Entities
             }     
         }
 
+        public int AmountCorrectCards {
+            get {
+                int counter = 0;
+               foreach (Card card in cards) {
+                    if (card.IsCorrect) { counter++; }
+                }
+                return counter;
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(String name) {
             var handler = PropertyChanged;
