@@ -21,8 +21,8 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:IconTextButton BtnText="" BtnIcon="Ban" Click="DidntKnow_Click" Grid.Column="0"></local:IconTextButton>
-            <local:IconTextButton BtnText="" BtnIcon="Check" Click="KnewIt_Click" Grid.Column="1"></local:IconTextButton>
+            <local:IconTextButton BtnText="" BtnIcon="Ban" x:Name="DidntKnowBtn" Click="NextCard_Click" Grid.Column="0"><!--Style="{StaticResource OkButton}"--> </local:IconTextButton>
+            <local:IconTextButton BtnText="" BtnIcon="Check" x:Name="DidKnowBtn"  Click="NextCard_Click" Grid.Column="1" ></local:IconTextButton>
         </Grid>
         
     </Grid>

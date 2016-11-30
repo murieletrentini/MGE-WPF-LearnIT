@@ -24,8 +24,8 @@ namespace MGE_WPF_LearnIT
         private ObservableCollection<Card> cards;
         private CardSet Set { get; set; }
         private Card CurrentCard { get; set; }
-        private int counter = 0;
-        
+        private int counter = -1;
+
         public PlayMode(CardSet set) {
             cards = set.getCards();
             Set = set;
@@ -37,15 +37,22 @@ namespace MGE_WPF_LearnIT
         }
 
         private void setCurrentCard() {
-            CurrentCard = cards[counter];
+            if (counter < Set.getCards().Count - 1) {
+                CurrentCard = cards[++counter];
+            } else {
+                //Display Finished Window
+                // Or change display in current Window and disable button?
+            }
+
         }
 
-        private void KnewIt_Click(object sender, RoutedEventArgs e) {
-           
-        }
-
-        private void DidntKnow_Click(object sender, RoutedEventArgs e) {
-           
-        }
+        private void NextCard_Click(object sender, RoutedEventArgs e) {
+            if (((IconTextButton)sender).Name == "DidKnowBtn") {
+                CurrentCard.IsCorrect = true;
+            } else {     
+                CurrentCard.IsCorrect = false;
+            }
+            setCurrentCard();
+        }       
     }
 }
