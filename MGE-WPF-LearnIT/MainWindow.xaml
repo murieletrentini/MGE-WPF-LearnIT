@@ -14,7 +14,7 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Left"
                     Width="150">
-            <TextBlock HorizontalAlignment="Center">My Sets:</TextBlock>
+            <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">My Sets:</TextBlock>
             <ListView x:Name="CardSetListView" MouseLeftButtonUp="displaySelectedCardSet">
                 <ListView.View>
                     <GridView>
@@ -32,7 +32,7 @@
                 <local:IconTextButton BtnText="Remove Card" BtnIcon="Trash" Click="RemoveCardEvent"></local:IconTextButton>
                 <local:IconTextButton BtnText="Play Mode" BtnIcon="Play" Click="StartPlayMode"></local:IconTextButton>
             </StackPanel>
-            <TextBox Name="CardSetTitle" DockPanel.Dock="Top" Text="{Binding Name}"></TextBox>
+            <TextBox Name="CardSetTitle" DockPanel.Dock="Top" Text="{Binding Name}" Style="{StaticResource InputTitle}"></TextBox>
             <ListView x:Name="CardListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -41,7 +41,7 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBox Text="{Binding Front, TargetNullValue='No Cards to Display'}" Grid.Column="0" Style="{StaticResource InputInList}"></TextBox>
+                            <TextBox Text="{Binding Front, TargetNullValue='no FrontSide'}" Grid.Column="0" Style="{StaticResource InputInList}"></TextBox>
                             <TextBox Text="{Binding Back}" Grid.Column="1" Style="{StaticResource InputInList}"></TextBox>
                         </Grid>
                     </DataTemplate>
