@@ -22,8 +22,9 @@
         <DockPanel DockPanel.Dock="Top">
             <StackPanel Name="Menu" DockPanel.Dock="Top" Orientation="Horizontal">
                 <local:IconTextButton BtnText="Add Set" BtnIcon="Plus" Click="AddCardSet_Click"></local:IconTextButton>
-                <local:IconTextButton BtnText="Add Card" BtnIcon="Plus" Click="AddCardEvent"></local:IconTextButton>
                 <local:IconTextButton BtnText="Remove Set" BtnIcon="Trash" Click="RemoveSetEvent"></local:IconTextButton>
+                <local:IconTextButton BtnText="Add Card" BtnIcon="Plus" Click="AddCardEvent"></local:IconTextButton>
+                <local:IconTextButton BtnText="Remove Card" BtnIcon="Trash" Click="RemoveCardEvent"></local:IconTextButton>
                 <local:IconTextButton BtnText="Play Mode" BtnIcon="Play"></local:IconTextButton>
             </StackPanel>
             <TextBox Name="CardSetTitle" DockPanel.Dock="Top" Text="{Binding Name}"></TextBox>

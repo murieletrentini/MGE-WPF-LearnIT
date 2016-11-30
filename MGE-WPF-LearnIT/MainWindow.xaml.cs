@@ -51,5 +51,11 @@ namespace MGE_WPF_LearnIT
                 CardListView.ItemsSource = null;
             }
         }
+
+        private void RemoveCardEvent(object sender, RoutedEventArgs e) {
+            if (CardListView.SelectedItems.Count > 0) {
+                currentSet.getCards().Remove((Card)CardListView.SelectedItems[0]);  
+            }
+        }
     }
 }
