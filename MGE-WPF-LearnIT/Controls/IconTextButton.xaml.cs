@@ -18,7 +18,7 @@ namespace MGE_WPF_LearnIT
     /// <summary>
     /// Interaction logic for IconTextButton.xaml
     /// </summary>
-    public partial class IconTextButton : UserControl
+    public partial class IconTextButton : Button
     {
         public static readonly DependencyProperty BtnTextProperty = DependencyProperty.Register("BtnText", typeof(string), typeof(IconTextButton));
         public static readonly DependencyProperty BtnIconProperty = DependencyProperty.Register("BtnIcon", typeof(string), typeof(IconTextButton));
@@ -40,15 +40,6 @@ namespace MGE_WPF_LearnIT
             InitializeComponent();
             this.DataContext = this;
         }
-
-        public event RoutedEventHandler Click;
-
-        void onButtonClick(object sender, RoutedEventArgs e) {
-            if (this.Click != null) {
-                this.Click(this, e);
-            }
-        }
-
-
+        
     }
 }

@@ -39,4 +39,15 @@
         <Setter Property="Background" Value="Transparent"></Setter>
        <Setter Property="BorderBrush" Value="{StaticResource MainBrush}"></Setter>
     </Style>
+    <Style x:Key="PlayModeCard" TargetType="Border">
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource MainBrush}"></Setter>
+        <Setter Property="Background" Value="{StaticResource MainBrush}"></Setter>
+        <Style.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+            </Style>
+        </Style.Resources>
+    </Style>
 </ResourceDictionary>

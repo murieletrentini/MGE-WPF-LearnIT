@@ -5,36 +5,26 @@
     <Style TargetType="{x:Type controls:IconTextButton}">
         <Setter Property="FontFamily" Value="Segoe UI"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource MainBrush}"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource MainBrush}"></Setter>
+        <Setter Property="Margin" Value="5"></Setter>
+        <Setter Property="Padding" Value="2"></Setter>
         <Style.Resources>
             <Style TargetType="Border">
-                <Setter Property="BorderBrush" Value="{StaticResource MainBrush}"></Setter>
                 <Setter Property="BorderThickness" Value="1"></Setter>
                 <Setter Property="CornerRadius" Value="3"></Setter>
-                <Setter Property="Background" Value="Transparent"></Setter>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="BorderThickness" Value="0"></Setter>
-                <Setter Property="Background" Value="Transparent"></Setter>
-                <Setter Property="Foreground" Value="{StaticResource MainBrush}"></Setter>
             </Style>
         </Style.Resources>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Border.Background" Value="Transparent"></Setter>
-                <Setter Property="Button.Background" Value="{StaticResource MainBrush}"></Setter>
-                <Setter Property="Button.Foreground" Value="White"></Setter>
+                <Setter Property="Background" Value="{StaticResource MainBrush}"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
             </Trigger>
         </Style.Triggers>
     </Style>
     <Style x:Key="OkButton" BasedOn="{StaticResource {x:Type controls:IconTextButton}}">
-        <Style.Resources>
-            <Style TargetType="Border">
-                <Setter Property="BorderBrush" Value="{StaticResource OkBrush}"></Setter>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Foreground" Value="{StaticResource OkBrush}"></Setter>
-            </Style>
-        </Style.Resources>
+        <Setter Property="Button.BorderBrush" Value="{StaticResource OkBrush}"></Setter>
+        <Setter Property="Button.Foreground" Value="{StaticResource OkBrush}"></Setter>
     </Style>
     <Style x:Key="CancelButton" BasedOn="{StaticResource {x:Type controls:IconTextButton}}">
         <Style.Resources>
