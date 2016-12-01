@@ -39,19 +39,30 @@ namespace MGE_WPF_LearnIT
         private void setCurrentCard() {
             if (counter < Set.getCards().Count - 1) {
                 CurrentCard = cards[++counter];
-                PlayModeCard.Text = CurrentCard.Front;
-            } else {
-                PlayModeCard.Text = "You're done!! You have " + Set.AmountCorrectCards + " of " + Set.getCards().Count + " correct."; 
+                PlayModeCardText.Text = CurrentCard.Front;
+            } else {                                                                          
+                PlayModeCard.Visibility = Visibility.Hidden; 
                 DidKnowBtn.Visibility = Visibility.Hidden;
                 DidntKnowBtn.Visibility = Visibility.Hidden;
+
                 CloseBtn.Visibility = Visibility.Visible;
+                DonePanel.Visibility = Visibility.Visible;
+                String doneText = "You're done!! You have " + Set.AmountCorrectCards + " of " + Set.getCards().Count + " correct Cards";
+                TextBlock block = new TextBlock();
+                block.Text = doneText;
+                block.HorizontalAlignment = HorizontalAlignment.Center;
+                DonePanel.Children.Add(block);
             }  
         }
 
         private void Close_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
-    
+
+        private void FlipCard(object sender, RoutedEventArgs e) {
+            PlayModeCardText.Text = PlayModeCardText.Text == CurrentCard.Front ? CurrentCard.Back : CurrentCard.Front; 
+        }
+
 
         private void NextCard_Click(object sender, RoutedEventArgs e) {
                 if (((IconTextButton)sender).Name == "DidKnowBtn") {

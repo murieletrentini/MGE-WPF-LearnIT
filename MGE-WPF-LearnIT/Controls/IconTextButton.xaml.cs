@@ -18,7 +18,7 @@ namespace MGE_WPF_LearnIT
     /// <summary>
     /// Interaction logic for IconTextButton.xaml
     /// </summary>
-    public partial class IconTextButton : UserControl
+    public partial class IconTextButton : Button
     {
         public static readonly DependencyProperty BtnTextProperty = DependencyProperty.Register("BtnText", typeof(string), typeof(IconTextButton));
         public static readonly DependencyProperty BtnIconProperty = DependencyProperty.Register("BtnIcon", typeof(string), typeof(IconTextButton));
