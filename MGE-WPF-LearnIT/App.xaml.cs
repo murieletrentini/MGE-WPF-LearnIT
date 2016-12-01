@@ -1,4 +1,5 @@
-﻿using MGE_WPF_LearnIT.Entities;
+﻿using MGE_WPF_LearnIT.domain;
+using MGE_WPF_LearnIT.Entities;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,8 +16,12 @@ namespace MGE_WPF_LearnIT
     public partial class App : Application
     {
         private List<CardSet> setList = new List<CardSet>();
+
         public void addSet(CardSet set) {
-            setList.Add(set);
+            using (var db = new Db()) {
+                db.CardSets.Add(set);
+                db.SaveChanges();
+            }
         }
         public List<CardSet> getSetList() {
             return setList;

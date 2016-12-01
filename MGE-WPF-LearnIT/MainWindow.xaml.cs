@@ -22,11 +22,8 @@ namespace MGE_WPF_LearnIT
 
             vm = new ViewModel(); 
             vm.setUpCardSets();
-            using (var db = new Db()) {
-                var cards = db.Cards.ToList();
-            }
-
-                CardSetListView.ItemsSource = vm.getSets();      
+            
+            CardSetListView.ItemsSource = vm.getSets();      
         }
                             
 
