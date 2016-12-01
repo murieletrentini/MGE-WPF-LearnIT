@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MGE_WPF_LearnIT.Entities
 {
+    [Table("cardsets")]
     public class Card : INotifyPropertyChanged
     {
         public Card(String front, String back) {
@@ -14,7 +17,15 @@ namespace MGE_WPF_LearnIT.Entities
             Back = back;
         }
 
+        public Card() { }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
+        public int CardId { get; set; }
+
+        
         private String front;
+        [Column("front")]
         public String Front {
             get { return front; }
             set {
@@ -26,6 +37,7 @@ namespace MGE_WPF_LearnIT.Entities
         }
 
         private String back;
+        [Column("back")]
         public String Back {
             get { return back; }
             set {
@@ -35,8 +47,13 @@ namespace MGE_WPF_LearnIT.Entities
                 }
             }
         }
-
+        [Column("isCorrect")]
         public bool IsCorrect { get; set; }
+
+        public int CardSetId { get; set; }
+
+        [ForeignKey(nameof(CardSetId))]
+        public virtual CardSet CardSet { get; set; }
         
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(String name) {

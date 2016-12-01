@@ -5,6 +5,8 @@ using System;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using MGE_WPF_LearnIT.domain;
+using System.Linq;
 
 namespace MGE_WPF_LearnIT
 {
@@ -20,8 +22,11 @@ namespace MGE_WPF_LearnIT
 
             vm = new ViewModel(); 
             vm.setUpCardSets();
+            using (var db = new Db()) {
+                var cards = db.Cards.ToList();
+            }
 
-            CardSetListView.ItemsSource = vm.getSets();      
+                CardSetListView.ItemsSource = vm.getSets();      
         }
                             
 
