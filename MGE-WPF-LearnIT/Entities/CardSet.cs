@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MGE_WPF_LearnIT.Entities
 {
-    [Table("cards")]
+    [Table("cardsets")]
     public class CardSet : INotifyPropertyChanged
     {
         [NotMapped]

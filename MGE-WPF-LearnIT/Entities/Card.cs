@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MGE_WPF_LearnIT.Entities
 {
-    [Table("cardsets")]
+    [Table("cards")]
     public class Card : INotifyPropertyChanged
     {
         public Card(String front, String back) {

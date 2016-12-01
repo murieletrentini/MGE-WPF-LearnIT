@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MGE_WPF_LearnIT.domain {
     class Db : DbContext {
-        public DbSet<CardSet> CardSets { get; set; }
         public DbSet<Card> Cards { get; set; }
+        public DbSet<CardSet> CardSets { get; set; }
     }
 }
