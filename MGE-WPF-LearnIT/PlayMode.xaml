@@ -14,16 +14,14 @@
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding Set.Name, TargetNullValue='No Title'}" Grid.Row="0"></TextBlock>
         <Border Grid.Row="1" Width="200" Height="160">
-            <TextBlock Text="{Binding CurrentCard.Front}" HorizontalAlignment="Center" VerticalAlignment="Center" Name="PlayModeCard"></TextBlock>
+            <TextBlock Text="CardText" HorizontalAlignment="Center" VerticalAlignment="Center" Name="PlayModeCard"></TextBlock>
         </Border>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:IconTextButton BtnText="" BtnIcon="Ban" x:Name="DidntKnowBtn" Click="NextCard_Click" Grid.Column="0">
-                <!--Style="{StaticResource OkButton}"-->
-            </local:IconTextButton>
+            <local:IconTextButton BtnText="" BtnIcon="Ban" x:Name="DidntKnowBtn" Click="NextCard_Click" Grid.Column="0"></local:IconTextButton>
             <local:IconTextButton BtnText="" BtnIcon="Check" x:Name="DidKnowBtn"  Click="NextCard_Click" Grid.Column="1" ></local:IconTextButton>
             <local:IconTextButton BtnText="Close" BtnIcon="" x:Name="CloseBtn"  Click="Close_Click" Grid.Column="0" Grid.ColumnSpan="2" Visibility="Hidden"></local:IconTextButton>
         </Grid>
