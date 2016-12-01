@@ -14,6 +14,7 @@
         <Setter Property="Border.BorderThickness" Value="0"></Setter>
     </Style>
     <Style TargetType="ListView">
+        <Setter Property="BorderThickness" Value="0"></Setter>
         <Style.Triggers>
             <Trigger Property="HasItems" Value="False">
                 <Setter Property="Template">
@@ -29,8 +30,13 @@
     <Style x:Key="Title">
         <Setter Property="TextBlock.FontFamily" Value="{StaticResource MainFont}" ></Setter>
         <Setter Property="TextBlock.FontSize" Value="20"></Setter>
+        <Setter Property="TextBlock.Margin" Value="0 0 0 10" ></Setter>
     </Style>
     <Style x:Key="InputTitle" BasedOn="{StaticResource Title}">
         <Setter Property="Border.BorderThickness" Value="0"></Setter>
+    </Style>
+    <Style TargetType="GridViewColumnHeader">
+        <Setter Property="Background" Value="Transparent"></Setter>
+       <Setter Property="BorderBrush" Value="{StaticResource MainBrush}"></Setter>
     </Style>
 </ResourceDictionary>
