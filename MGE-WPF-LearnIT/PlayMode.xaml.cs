@@ -40,19 +40,25 @@ namespace MGE_WPF_LearnIT
             if (counter < Set.getCards().Count - 1) {
                 CurrentCard = cards[++counter];
             } else {
-                //Display Finished Window
-                // Or change display in current Window and disable button?
-            }
-
+                PlayModeCard.Text = "You're Done!!";
+                DidKnowBtn.Visibility = Visibility.Hidden;
+                DidntKnowBtn.Visibility = Visibility.Hidden;
+                CloseBtn.Visibility = Visibility.Visible;
+            }  
         }
 
+        private void Close_Click(object sender, RoutedEventArgs e) {
+            this.Close();
+        }
+    
+
         private void NextCard_Click(object sender, RoutedEventArgs e) {
-            if (((IconTextButton)sender).Name == "DidKnowBtn") {
-                CurrentCard.IsCorrect = true;
-            } else {     
-                CurrentCard.IsCorrect = false;
-            }
-            setCurrentCard();
-        }       
-    }
+                if (((IconTextButton)sender).Name == "DidKnowBtn") {
+                    CurrentCard.IsCorrect = true;
+                } else {     
+                    CurrentCard.IsCorrect = false;
+                }
+                setCurrentCard();
+            }       
+        }
 }
