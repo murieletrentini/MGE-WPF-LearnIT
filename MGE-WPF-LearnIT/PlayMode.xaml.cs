@@ -21,26 +21,27 @@ namespace MGE_WPF_LearnIT
     /// </summary>
     public partial class PlayMode : Window
     {
-        private ObservableCollection<Card> cards;
-        private CardSet Set { get; set; }
-        private Card CurrentCard { get; set; }
+        public ObservableCollection<Card> cards;
+        public CardSet Set { get; set; }
+        public Card CurrentCard { get; set; }
         private int counter = -1;
 
         public PlayMode(CardSet set) {
             cards = set.getCards();
             Set = set;
-            setCurrentCard();
 
-            DataContext = this;
-
+            DataContext = this;  
             InitializeComponent();
+
+            setCurrentCard();
         }
 
         private void setCurrentCard() {
             if (counter < Set.getCards().Count - 1) {
                 CurrentCard = cards[++counter];
+                PlayModeCard.Text = CurrentCard.Front;
             } else {
-                PlayModeCard.Text = "You're Done!!";
+                PlayModeCard.Text = "You're done!! You have " + Set.AmountCorrectCards + " of " + Set.getCards().Count + " correct."; 
                 DidKnowBtn.Visibility = Visibility.Hidden;
                 DidntKnowBtn.Visibility = Visibility.Hidden;
                 CloseBtn.Visibility = Visibility.Visible;
