@@ -49,7 +49,5 @@
                 <Setter Property="FontWeight" Value="Bold"></Setter>
             </Style>
         </Style.Resources>
-        
-        
     </Style>
 </ResourceDictionary>

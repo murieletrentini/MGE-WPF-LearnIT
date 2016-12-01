@@ -40,15 +40,6 @@ namespace MGE_WPF_LearnIT
             InitializeComponent();
             this.DataContext = this;
         }
-
-        public event RoutedEventHandler Click;
-
-        void onButtonClick(object sender, RoutedEventArgs e) {
-            if (this.Click != null) {
-                this.Click(this, e);
-            }
-        }
-
-
+        
     }
 }
