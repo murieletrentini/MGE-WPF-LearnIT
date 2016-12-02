@@ -51,6 +51,7 @@ namespace MGE_WPF_LearnIT
                 vm.getSets().Remove(currentSet);
                 currentSet = null;      
                 CardListView.ItemsSource = null;
+                CardSetTitle.Text = "No title to display";
             }
         }
 
