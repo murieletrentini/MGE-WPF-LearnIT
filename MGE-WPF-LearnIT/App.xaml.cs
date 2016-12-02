@@ -14,17 +14,12 @@ namespace MGE_WPF_LearnIT
     /// Interaktionslogik für "App.xaml"
     /// </summary>
     public partial class App : Application
-    {
-        private List<CardSet> setList = new List<CardSet>();
+    {      
+        public App() {
+            
+        }
 
-        public void addSet(CardSet set) {
-            using (var db = new Db()) {
-                db.CardSets.Add(set);
-                db.SaveChanges();
-            }
-        }
-        public List<CardSet> getSetList() {
-            return setList;
-        }
+       
+      
     }
 }

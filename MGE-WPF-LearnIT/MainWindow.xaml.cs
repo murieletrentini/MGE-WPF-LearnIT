@@ -49,6 +49,7 @@ namespace MGE_WPF_LearnIT
         private void RemoveSetEvent(object sender, RoutedEventArgs e) {
             if (CardSetListView.SelectedItems.Count > 0) {
                 vm.getSets().Remove(currentSet);
+                vm.removeSetFromDb(currentSet);
                 currentSet = null;      
                 CardListView.ItemsSource = null;
                 CardSetTitle.Text = "No title to display";
@@ -57,7 +58,9 @@ namespace MGE_WPF_LearnIT
 
         private void RemoveCardEvent(object sender, RoutedEventArgs e) {
             if (CardListView.SelectedItems.Count > 0) {
-                currentSet.getCards().Remove((Card)CardListView.SelectedItems[0]);  
+                Card card = (Card)CardListView.SelectedItems[0];
+                currentSet.getCards().Remove(card);
+                vm.RemoveCardFromDb(card);  
             }
         }
 

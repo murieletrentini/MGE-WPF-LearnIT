@@ -72,6 +72,7 @@
       <DependentUpon>IconTextButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="domain\Db.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PlayMode.xaml.cs">
       <DependentUpon>PlayMode.xaml</DependentUpon>
     </Compile>

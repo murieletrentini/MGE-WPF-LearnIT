@@ -22,13 +22,16 @@ namespace MGE_WPF_LearnIT
     public partial class AddCardSet : Window
     {
         private ObservableCollection<CardSet> sets;
+        private ViewModel vm = new ViewModel();
         public AddCardSet(ObservableCollection<CardSet> sets) {
             this.sets = sets;
             InitializeComponent();
         }
 
         private void SaveCardSet_Click(object sender, RoutedEventArgs e) {
-            sets.Add(new CardSet(CardSetTitle.Text));
+            CardSet set = new CardSet(CardSetTitle.Text);
+            sets.Add(set);
+            vm.addSetToDb(set);
             this.Close();
         }
 

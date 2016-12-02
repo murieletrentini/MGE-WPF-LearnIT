@@ -31,7 +31,7 @@ namespace MGE_WPF_LearnIT.Entities
             return cards;
         }
         public void addCard(Card card) {
-            cards.Add(card);
+            cards.Add(card);  
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

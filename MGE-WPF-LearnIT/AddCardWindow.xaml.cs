@@ -21,6 +21,7 @@ namespace MGE_WPF_LearnIT
     public partial class AddCardWindow : Window
     {
         private CardSet set;
+        private ViewModel vm = new ViewModel();
 
         public AddCardWindow(CardSet set) {
             this.set = set;
@@ -30,6 +31,7 @@ namespace MGE_WPF_LearnIT
         private void SaveCard_Click(object sender, RoutedEventArgs e) {
             Card newCard = new Card(Front.Text, Back.Text);
             set.addCard(newCard);
+            vm.addCardToDb(newCard, set);
             this.Close();
         }
 
