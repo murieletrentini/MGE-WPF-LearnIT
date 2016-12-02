@@ -10,8 +10,24 @@
     <SolidColorBrush x:Key="CancelBrush" Color="{StaticResource CancelColor}"></SolidColorBrush>
     <FontFamily x:Key="MainFont">Segoe UI</FontFamily>
     <!-- Styles -->
+    <Style x:Key="Title">
+        <Setter Property="TextBlock.FontFamily" Value="{StaticResource MainFont}" ></Setter>
+        <Setter Property="TextBlock.FontSize" Value="20"></Setter>
+        <Setter Property="TextBlock.Margin" Value="0 0 0 10" ></Setter>
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource MainBrush}"></Setter>
+    </Style>
+    <Style x:Key="InputTitle" BasedOn="{StaticResource Title}">
+        <Setter Property="Border.BorderThickness" Value="0"></Setter>
+    </Style>
     <Style x:Key="InputInList">
         <Setter Property="Border.BorderThickness" Value="0"></Setter>
+        <Setter Property="TextBox.HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="TextBox.TextWrapping" Value="Wrap"></Setter>
+        <Setter Property="TextBox.AcceptsReturn" Value="True"></Setter>
+        <Setter Property="TextBox.AcceptsTab" Value="True"></Setter>
+        <Setter Property="TextBox.VerticalScrollBarVisibility" Value="Auto"></Setter>
+        <Setter Property="TextBox.MaxHeight" Value="30"></Setter>
+        <Setter Property="TextBox.MaxWidth" Value="220"></Setter>
     </Style>
     <Style TargetType="ListView">
         <Setter Property="BorderThickness" Value="0"></Setter>
@@ -20,24 +36,29 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate>
-                            <TextBlock>No items to display</TextBlock>
+                            <TextBlock Padding="5 10">No items to display</TextBlock>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Title">
-        <Setter Property="TextBlock.FontFamily" Value="{StaticResource MainFont}" ></Setter>
-        <Setter Property="TextBlock.FontSize" Value="20"></Setter>
-        <Setter Property="TextBlock.Margin" Value="0 0 0 10" ></Setter>
+    <Style x:Key="ListHeader">
+        <Setter Property="Grid.Background" Value="{StaticResource MainBrush}"></Setter>
+        <Style.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="FontFamily" Value="{StaticResource MainFont}"></Setter>
+                <Setter Property="Margin" Value="5"></Setter>
+            </Style>
+        </Style.Resources>
     </Style>
-    <Style x:Key="InputTitle" BasedOn="{StaticResource Title}">
-        <Setter Property="Border.BorderThickness" Value="0"></Setter>
-    </Style>
-    <Style TargetType="GridViewColumnHeader">
-        <Setter Property="Background" Value="Transparent"></Setter>
-       <Setter Property="BorderBrush" Value="{StaticResource MainBrush}"></Setter>
+    <Style TargetType="ListViewItem">
+        <Setter Property="Padding" Value="0 5"></Setter>
+        <Setter Property="BorderThickness" Value="0 1"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource MainBrush}"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
     <Style x:Key="PlayModeCard" TargetType="Border">
         <Setter Property="BorderThickness" Value="1"></Setter>

@@ -16,34 +16,48 @@
                     Width="150"
                     Margin="20">
             <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">My Sets:</TextBlock>
+            <Grid Style="{StaticResource ListHeader}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Set" Grid.Column="0"></TextBlock>
+                <TextBlock Text="# Cards" Grid.Column="1" HorizontalAlignment="Right"></TextBlock>
+            </Grid>
             <ListView x:Name="CardSetListView" MouseLeftButtonUp="displaySelectedCardSet">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Set" DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="# Cards" DisplayMemberBinding="{Binding CardAmount}"/>
-                    </GridView>
-                </ListView.View>
+               <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Name}" Grid.Column="0"></TextBlock>
+                            <TextBlock Text="{Binding CardAmount}" Grid.Column="1" HorizontalAlignment="Right"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-        <DockPanel DockPanel.Dock="Top">
-            <StackPanel Name="Menu" DockPanel.Dock="Top" Orientation="Horizontal">                         
+        <DockPanel DockPanel.Dock="Top" Margin="15">
+            <StackPanel Name="Menu" DockPanel.Dock="Top" Orientation="Horizontal" Margin="0 0 0 15">                         
                 <local:IconTextButton BtnText="Add Set" BtnIcon="Plus" Click="AddCardSet_Click"></local:IconTextButton>
                 <local:IconTextButton BtnText="Remove Set" BtnIcon="Trash" Click="RemoveSetEvent"></local:IconTextButton>
                 <local:IconTextButton BtnText="Add Card" BtnIcon="Plus" Click="AddCardEvent"></local:IconTextButton>
                 <local:IconTextButton BtnText="Remove Card" BtnIcon="Trash" Click="RemoveCardEvent"></local:IconTextButton>
                 <local:IconTextButton BtnText="Play Mode" BtnIcon="Play" Click="StartPlayMode"></local:IconTextButton>
             </StackPanel>
-            <TextBox Name="CardSetTitle" DockPanel.Dock="Top" Text="{Binding Name}" Style="{StaticResource InputTitle}"></TextBox>
+            <TextBox Name="CardSetTitle" DockPanel.Dock="Top" Text="{Binding Name, FallbackValue='No title to display'}" Style="{StaticResource InputTitle}"></TextBox>
             <ListView x:Name="CardListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBox Text="{Binding Front, TargetNullValue='no FrontSide'}" Grid.Column="0" Style="{StaticResource InputInList}"></TextBox>
-                            <TextBox Text="{Binding Back}" Grid.Column="1" Style="{StaticResource InputInList}"></TextBox>
+                            <TextBox Text="{Binding Front, FallbackValue='Front'}" Grid.Column="0" Style="{StaticResource InputInList}"></TextBox>
+                            <TextBox Text="{Binding Back, FallbackValue='Back'}" Grid.Column="1" Style="{StaticResource InputInList}"></TextBox>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

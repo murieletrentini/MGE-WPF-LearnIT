@@ -8,9 +8,13 @@
         Title="AddCard" Height="300" Width="300" ResizeMode="NoResize">
     <DockPanel Margin="10">
         <TextBlock DockPanel.Dock="Top">Front:</TextBlock>
-        <TextBox DockPanel.Dock="Top" Name="Front" Height="80"></TextBox>
+        <TextBox DockPanel.Dock="Top" Name="Front" Height="80"
+                 TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True"
+                 VerticalScrollBarVisibility="Auto" Margin="0 5"></TextBox>
         <TextBlock DockPanel.Dock="Top">Back:</TextBlock>
-        <TextBox DockPanel.Dock="Top" Name="Back" Height="80"></TextBox>
+        <TextBox DockPanel.Dock="Top" Name="Back" Height="80"
+                 TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True"
+                 VerticalScrollBarVisibility="Auto" Margin="0 5"></TextBox>
         <StackPanel DockPanel.Dock="Bottom" Name="ButtonGroup" Orientation="Horizontal" HorizontalAlignment="Right">
             <local:IconTextButton BtnText="Save" BtnIcon="Save" Click="SaveCard_Click"></local:IconTextButton>
             <local:IconTextButton BtnText="Cancle" BtnIcon="Ban" Click="CancelAddCard_Click"></local:IconTextButton>

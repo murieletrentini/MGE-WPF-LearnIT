@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MGE_WPF_LearnIT"
         mc:Ignorable="d"
-        Title="AddCardSet" Height="120" Width="300" ResizeMode="NoResize">
-    <StackPanel>
-        <TextBlock>Name your new Card Set:</TextBlock>
+        Title="AddCardSet" Height="130" Width="300" ResizeMode="NoResize">
+    <StackPanel Margin="10 10 10 0">
+        <TextBlock Margin="0 0 0 5">Name your new Card Set:</TextBlock>
         <TextBox Name="CardSetTitle"></TextBox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <local:IconTextButton BtnText="Save" BtnIcon="Save" Click="SaveCardSet_Click"></local:IconTextButton>
