@@ -7,13 +7,21 @@
         mc:Ignorable="d"
         Title="AddCard" Height="300" Width="300" ResizeMode="NoResize">
     <DockPanel Margin="10">
-        <TextBlock DockPanel.Dock="Top">Front:</TextBlock>
+        <DockPanel DockPanel.Dock="Top">
+            <TextBlock>Front:</TextBlock>
+            <TextBlock HorizontalAlignment="Right" Name="FrontCounter">0/260</TextBlock>
+        </DockPanel>
         <TextBox DockPanel.Dock="Top" Name="Front" Height="80"
                  TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True"
+                 MaxLength="260" TextChanged="TextBox_TextChanged"
                  VerticalScrollBarVisibility="Auto" Margin="0 5"></TextBox>
-        <TextBlock DockPanel.Dock="Top">Back:</TextBlock>
+        <DockPanel DockPanel.Dock="Top">
+            <TextBlock>Back:</TextBlock>
+            <TextBlock HorizontalAlignment="Right" Name="BackCounter">0/260</TextBlock>
+        </DockPanel>
         <TextBox DockPanel.Dock="Top" Name="Back" Height="80"
                  TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True"
+                 MaxLength="260" TextChanged="TextBox_TextChanged"
                  VerticalScrollBarVisibility="Auto" Margin="0 5"></TextBox>
         <StackPanel DockPanel.Dock="Bottom" Name="ButtonGroup" Orientation="Horizontal" HorizontalAlignment="Right">
             <local:IconTextButton BtnText="Save" BtnIcon="Save" Click="SaveCard_Click"></local:IconTextButton>

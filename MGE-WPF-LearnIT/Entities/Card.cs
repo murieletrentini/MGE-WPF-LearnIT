@@ -59,7 +59,7 @@ namespace MGE_WPF_LearnIT.Entities
         public void OnPropertyChanged(String name) {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new PropertyChangedEventArgs(name));
+                handler(this, new PropertyChangedEventArgs(name)); 
         }
     }
 }

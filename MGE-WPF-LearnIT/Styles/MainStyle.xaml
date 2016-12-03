@@ -18,14 +18,22 @@
     </Style>
     <Style x:Key="InputTitle" BasedOn="{StaticResource Title}">
         <Setter Property="Border.BorderThickness" Value="0"></Setter>
+        <Style.Triggers>
+            <Trigger Property="TextBox.Text" Value="No title to display">
+                <Setter Property="TextBox.IsReadOnly" Value="True"></Setter>
+                <Setter Property="TextBox.Cursor" Value="Arrow"></Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
-    <Style x:Key="InputInList">
+    <Style x:Key="LongCards">
+        <Setter Property="TextBox.TextWrapping" Value="Wrap"></Setter>
+    </Style>
+    <Style x:Key="InputInList" BasedOn="{StaticResource LongCards}">
+        <Setter Property="TextBox.VerticalScrollBarVisibility" Value="Auto"></Setter>
         <Setter Property="Border.BorderThickness" Value="0"></Setter>
         <Setter Property="TextBox.HorizontalAlignment" Value="Left"></Setter>
-        <Setter Property="TextBox.TextWrapping" Value="Wrap"></Setter>
         <Setter Property="TextBox.AcceptsReturn" Value="True"></Setter>
         <Setter Property="TextBox.AcceptsTab" Value="True"></Setter>
-        <Setter Property="TextBox.VerticalScrollBarVisibility" Value="Auto"></Setter>
         <Setter Property="TextBox.MaxHeight" Value="30"></Setter>
         <Setter Property="TextBox.MaxWidth" Value="220"></Setter>
     </Style>
@@ -64,11 +72,10 @@
         <Setter Property="BorderThickness" Value="1"></Setter>
         <Setter Property="BorderBrush" Value="{StaticResource MainBrush}"></Setter>
         <Setter Property="Background" Value="{StaticResource MainBrush}"></Setter>
-        <Style.Resources>
-            <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="FontWeight" Value="Bold"></Setter>
-            </Style>
-        </Style.Resources>
+    </Style>
+    <Style x:Key="PlayModeCardText" BasedOn="{StaticResource LongCards}" TargetType="TextBlock">
+        <Setter Property="Padding" Value="10"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
     </Style>
 </ResourceDictionary>

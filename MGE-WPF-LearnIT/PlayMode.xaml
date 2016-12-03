@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding Set.Name, TargetNullValue='No Title'}" Grid.Row="0" Style="{StaticResource Title}" HorizontalAlignment="Center" Padding="5"></TextBlock>
         <Border Grid.Row="1" Width="200" Height="160" MouseLeftButtonDown="FlipCard" Style="{StaticResource PlayModeCard}" Name="PlayModeCard">
-            <TextBlock Text="CardText" HorizontalAlignment="Center" VerticalAlignment="Center" Name="PlayModeCardText"></TextBlock>
+            <TextBlock Text="CardText" HorizontalAlignment="Center" VerticalAlignment="Center" Name="PlayModeCardText" Style="{StaticResource PlayModeCardText}"></TextBlock>
         </Border>
         <StackPanel Name="DonePanel" Grid.Row ="1" Visibility="Hidden"></StackPanel>
         <Grid Grid.Row="2">

@@ -38,5 +38,19 @@ namespace MGE_WPF_LearnIT
         private void CancelAddCard_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs args) {
+            TextBox activeBox = (TextBox)sender;
+            TextBlock counter = null;
+            if (activeBox == Front) {
+                counter = FrontCounter;
+            } else {
+                counter = BackCounter;
+            }
+            counter.Text = activeBox.Text.Length + "/260";
+            if (activeBox.Text.Length == 260) {
+                counter.Foreground = Brushes.Red;
+            }
+        }
     }
 }
