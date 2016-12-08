@@ -3,6 +3,7 @@ using MGE_WPF_LearnIT.Entities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,15 @@ using System.Threading.Tasks;
 
 namespace MGE_WPF_LearnIT
 {
-    class ViewModel
+    public class ViewModel
     {
+        public ViewModel() {
+            this.sets.CollectionChanged += (o, a) => {
+                Console.WriteLine(  "changed");
+            };
+        }
         private ObservableCollection<CardSet> sets = new ObservableCollection<CardSet>();
+        public ObservableCollection<CardSet> Sets { get; set; }
 
         public void setUpCardSets() {
             using (var db = new Db()) {
@@ -49,7 +56,6 @@ namespace MGE_WPF_LearnIT
                 db.SaveChanges();
             } 
         }
-        
 
         public void addCardToDb(Card card, CardSet set) {
             using (var db = new Db()) {
@@ -62,10 +68,26 @@ namespace MGE_WPF_LearnIT
         public void RemoveCardFromDb(Card card) {
             using (var db = new Db()) {
                 var cardToDelete = db.Cards.First(c => c.CardId == card.CardId);
-
-                ((IObjectContextAdapter)db).ObjectContext.DeleteObject(cardToDelete);
-
+                ((IObjectContextAdapter)db).ObjectContext.DeleteObject(cardToDelete); 
                 db.SaveChanges();
+            }
+        }
+
+
+        public void updateCard(Card card) {
+            using (var db = new Db()) {    
+                if (card.CardId != 0) {
+                    db.Entry(card).State = EntityState.Modified;
+                    db.SaveChanges();
+                }     
+            }
+        }
+        public void updateSet(CardSet set) {
+            using (var db = new Db()) { 
+                if (set.CardSetId != 0) {
+                    db.Entry(set).State = EntityState.Modified;
+                    db.SaveChanges();
+                }      
             }
         }
     }
