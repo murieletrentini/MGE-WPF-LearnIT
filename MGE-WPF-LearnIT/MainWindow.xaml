@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MGE_WPF_LearnIT"
+        xmlns:entities="clr-namespace:MGE_WPF_LearnIT.Entities"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="700">
     <Window.Resources>
         <DataTemplate x:Key="Input">
-            <TextBox Text="{Binding Name}" Style="{StaticResource InputInList}"></TextBox>
+            <TextBox Text="{Binding Vm.CurrentSet.Name}" Style="{StaticResource InputInList}"></TextBox>
         </DataTemplate>
     </Window.Resources>
     <DockPanel>
@@ -24,9 +25,9 @@
                 <TextBlock Text="Set" Grid.Column="0"></TextBlock>
                 <TextBlock Text="# Cards" Grid.Column="1" HorizontalAlignment="Right"></TextBlock>
             </Grid>
-            <ListView x:Name="CardSetListView" MouseLeftButtonUp="displaySelectedCardSet">
-               <ListView.ItemTemplate>
-                    <DataTemplate>
+            <ListView x:Name="CardSetListView" ItemsSource="{Binding Vm.Sets}" SelectedItem="{Binding Vm.CurrentSet}">
+               <ListView.ItemTemplate>                                                
+                    <DataTemplate DataType="entities:CardSet">
                         <Grid HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
@@ -47,10 +48,10 @@
                 <local:IconTextButton BtnText="Remove Card" BtnIcon="Trash" Click="RemoveCardEvent"></local:IconTextButton>
                 <local:IconTextButton BtnText="Play Mode" BtnIcon="Play" Click="StartPlayMode"></local:IconTextButton>
             </StackPanel>
-            <TextBox Name="CardSetTitle" DockPanel.Dock="Top" Text="{Binding Name, FallbackValue='No title to display'}" Style="{StaticResource InputTitle}"></TextBox>
-            <ListView x:Name="CardListView">
+            <TextBox Name="CardSetTitle" DockPanel.Dock="Top" Text="{Binding Vm.CurrentSet.Name, FallbackValue='No title to display'}" Style="{StaticResource InputTitle}"></TextBox>
+            <ListView x:Name="CardListView" ItemsSource="{Binding Vm.CurrentSet.Cards}">
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate DataType="entities:Card">
                         <Grid HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>

@@ -31,7 +31,8 @@ namespace MGE_WPF_LearnIT
         private void SaveCardSet_Click(object sender, RoutedEventArgs e) {
             CardSet set = new CardSet(CardSetTitle.Text);
             sets.Add(set);
-            vm.addSetToDb(set);
+            vm.listenToNewSet(set);
+            vm.addSetToDb(set);    
             this.Close();
         }
 

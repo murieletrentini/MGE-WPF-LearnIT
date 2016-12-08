@@ -16,23 +16,14 @@ namespace MGE_WPF_LearnIT.Entities
     {
         [NotMapped]
         private ObservableCollection<Card> cards = new ObservableCollection<Card>();
+        [NotMapped]
+        public ObservableCollection<Card> Cards { get { return cards; } set { cards = value; } }
 
         public CardSet(String name) {
             Name = name;
             cards.CollectionChanged += cardsChanged;
         }
 
-        public CardSet() { }
-
-        private void cardsChanged(object sender, NotifyCollectionChangedEventArgs e) {
-            OnPropertyChanged(nameof(cardAmount));
-        }
-        public ObservableCollection<Card> getCards() {
-            return cards;
-        }
-        public void addCard(Card card) {
-            cards.Add(card);  
-        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
@@ -40,26 +31,36 @@ namespace MGE_WPF_LearnIT.Entities
 
         private String name;
         [Column("name")]
-        public String Name {
+        public String Name
+        {
             get { return name; }
-            set {
+            set
+            {
                 if (value != name) {
                     name = value;
-                    OnPropertyChanged(nameof(name));
-                    
+                    OnPropertyChanged(nameof(name));  
                 }
             }
-        }
+        }                  
 
+        private void cardsChanged(object sender, NotifyCollectionChangedEventArgs e) {
+            OnPropertyChanged(nameof(cardAmount));
+        }
+       
+        public void addCard(Card card) {
+            cards.Add(card);  
+        }
+       
         private int cardAmount;
         [NotMapped]
         public int CardAmount {
             get
             {
-                cardAmount = cards.Count;
+                cardAmount = Cards.Count;
                 return cardAmount;
             }     
         }
+
         [NotMapped]
         public int AmountCorrectCards {
             get {
@@ -77,7 +78,6 @@ namespace MGE_WPF_LearnIT.Entities
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(name));
         }
-
-        public virtual List<Card> Cards { set; get; }
+       
     }
 }

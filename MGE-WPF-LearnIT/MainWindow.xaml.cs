@@ -9,64 +9,53 @@ using MGE_WPF_LearnIT.domain;
 using System.Linq;
 
 namespace MGE_WPF_LearnIT
-{
-    /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window {                                       
-        private CardSet currentSet;
-        private ViewModel vm;
+{            
+    public partial class MainWindow : Window {     
+        public ViewModel Vm { get; set; }
 
         public MainWindow() {
             InitializeComponent();
 
-            vm = new ViewModel(); 
-            vm.setUpCardSets();
-            
-            CardSetListView.ItemsSource = vm.getSets();      
+            Vm = new ViewModel(); 
+            Vm.setUpCardSets();
+            DataContext = this;  
         }
-                            
-
-        private void displaySelectedCardSet(object sender, MouseButtonEventArgs e) {
-            currentSet = (CardSet) CardSetListView.SelectedItems[0];
-            CardListView.ItemsSource = currentSet.getCards();
-            CardSetTitle.DataContext = currentSet; 
-        }
-
+               
         private void AddCardEvent(object sender, RoutedEventArgs e) {
             if (CardSetListView.SelectedItems.Count > 0) {
-                currentSet = (CardSet)CardSetListView.SelectedItems[0];
-                AddCardWindow addCardWindow = new AddCardWindow(currentSet);
+                Vm.CurrentSet = (CardSet)CardSetListView.SelectedItems[0];  
+                AddCardWindow addCardWindow = new AddCardWindow(Vm.CurrentSet);
                 addCardWindow.Show();
             }                  
-        }
+        }                    
 
         private void AddCardSet_Click(object sender, RoutedEventArgs e) {
-            AddCardSet addCardSetWindow = new AddCardSet(vm.getSets());
+            AddCardSet addCardSetWindow = new AddCardSet(Vm.getSets());
             addCardSetWindow.Show();
         }
 
         private void RemoveSetEvent(object sender, RoutedEventArgs e) {
             if (CardSetListView.SelectedItems.Count > 0) {
-                vm.getSets().Remove(currentSet);
-                vm.removeSetFromDb(currentSet);
-                currentSet = null;      
+                CardSet setToRemove = Vm.CurrentSet;
+                Vm.Sets.Remove(setToRemove);
+                Vm.removeSetFromDb(setToRemove);
+             /*   Vm.CurrentSet = null;      
                 CardListView.ItemsSource = null;
-                CardSetTitle.Text = "No title to display";
+                CardSetTitle.Text = "No title to display";      */
             }
         }
 
         private void RemoveCardEvent(object sender, RoutedEventArgs e) {
             if (CardListView.SelectedItems.Count > 0) {
                 Card card = (Card)CardListView.SelectedItems[0];
-                currentSet.getCards().Remove(card);
-                vm.RemoveCardFromDb(card);  
+                Vm.CurrentSet.Cards.Remove(card);
+                Vm.RemoveCardFromDb(card);  
             }
         }
 
         private void StartPlayMode(object sender, RoutedEventArgs e) {
             if (CardSetListView.SelectedItems.Count > 0) {
-                PlayMode playMode = new PlayMode(currentSet);
+                PlayMode playMode = new PlayMode(Vm.CurrentSet);
                 playMode.Show();
             }
         }

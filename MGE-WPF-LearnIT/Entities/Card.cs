@@ -56,7 +56,7 @@ namespace MGE_WPF_LearnIT.Entities
         public virtual CardSet CardSet { get; set; }
         
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(String name) {
+        public void OnPropertyChanged(String name) { 
             var handler = PropertyChanged;
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(name)); 

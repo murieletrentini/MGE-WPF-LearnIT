@@ -27,7 +27,7 @@ namespace MGE_WPF_LearnIT
         private int counter = -1;
 
         public PlayMode(CardSet set) {
-            cards = set.getCards();
+            cards = set.Cards;
             Set = set;
 
             DataContext = this;  
@@ -37,7 +37,7 @@ namespace MGE_WPF_LearnIT
         }
 
         private void setCurrentCard() {
-            if (counter < Set.getCards().Count - 1) {
+            if (counter < Set.Cards.Count - 1) {
                 CurrentCard = cards[++counter];
                 PlayModeCardText.Text = CurrentCard.Front;
             } else {                                                                          
@@ -47,7 +47,7 @@ namespace MGE_WPF_LearnIT
 
                 CloseBtn.Visibility = Visibility.Visible;
                 DonePanel.Visibility = Visibility.Visible;
-                String doneText = "You're done!! You have " + Set.AmountCorrectCards + " of " + Set.getCards().Count + " correct Cards";
+                String doneText = "You're done!! You have " + Set.AmountCorrectCards + " of " + Set.Cards.Count + " correct Cards";
                 TextBlock block = new TextBlock();
                 block.Text = doneText;
                 block.HorizontalAlignment = HorizontalAlignment.Center;

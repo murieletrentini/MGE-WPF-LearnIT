@@ -3,6 +3,7 @@ using MGE_WPF_LearnIT.Entities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -11,15 +12,52 @@ using System.Threading.Tasks;
 
 namespace MGE_WPF_LearnIT
 {
-    public class ViewModel
+    public class ViewModel  : INotifyPropertyChanged
     {
-        public ViewModel() {
-            this.sets.CollectionChanged += (o, a) => {
-                Console.WriteLine(  "changed");
-            };
-        }
+       
         private ObservableCollection<CardSet> sets = new ObservableCollection<CardSet>();
-        public ObservableCollection<CardSet> Sets { get; set; }
+        public ObservableCollection<CardSet> Sets { get { return sets; } set { sets = value; } }
+
+        private CardSet currentSet;
+        public CardSet CurrentSet
+        {
+            get { return currentSet; }
+            set
+            {
+                if (value != currentSet) {
+                    currentSet = value;
+                    OnPropertyChanged(nameof(currentSet));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(String name) {
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(name));
+        }
+
+        public void listenToChanges() {
+            foreach (CardSet set in sets) {
+                listenToNewSet(set);
+                foreach (Card card in set.Cards) {
+                    listenToNewCard(card);
+                }
+            }  
+        }
+        
+        public void listenToNewCard(Card card) {
+            card.PropertyChanged += (o, a) => {
+                updateCard(card);
+            };
+        } 
+        
+        public void listenToNewSet(CardSet set) {
+            set.PropertyChanged += (o, a) => {
+                updateSet(set);
+            };
+        }         
 
         public void setUpCardSets() {
             using (var db = new Db()) {
@@ -34,7 +72,8 @@ namespace MGE_WPF_LearnIT
                         set.addCard(card);
                     }
                 }
-            }                                         
+            }
+            listenToChanges();                                       
         }
        public ObservableCollection<CardSet> getSets () {
             return sets;

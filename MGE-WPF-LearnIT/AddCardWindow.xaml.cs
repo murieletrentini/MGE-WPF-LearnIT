@@ -31,6 +31,7 @@ namespace MGE_WPF_LearnIT
         private void SaveCard_Click(object sender, RoutedEventArgs e) {
             Card newCard = new Card(Front.Text, Back.Text);
             set.addCard(newCard);
+            vm.listenToNewCard(newCard);
             vm.addCardToDb(newCard, set);
             this.Close();
         }
