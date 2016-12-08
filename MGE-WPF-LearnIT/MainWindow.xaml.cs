@@ -17,7 +17,6 @@ namespace MGE_WPF_LearnIT
             InitializeComponent();
 
             Vm = new ViewModel(); 
-            Vm.setUpCardSets();
             DataContext = this;  
         }
                
@@ -30,18 +29,13 @@ namespace MGE_WPF_LearnIT
         }                    
 
         private void AddCardSet_Click(object sender, RoutedEventArgs e) {
-            AddCardSet addCardSetWindow = new AddCardSet(Vm.getSets());
+            AddCardSet addCardSetWindow = new AddCardSet();
             addCardSetWindow.Show();
         }
 
         private void RemoveSetEvent(object sender, RoutedEventArgs e) {
             if (CardSetListView.SelectedItems.Count > 0) {
-                CardSet setToRemove = Vm.CurrentSet;
-                Vm.Sets.Remove(setToRemove);
-                Vm.removeSetFromDb(setToRemove);
-             /*   Vm.CurrentSet = null;      
-                CardListView.ItemsSource = null;
-                CardSetTitle.Text = "No title to display";      */
+                Vm.removeCurrentSet();
             }
         }
 

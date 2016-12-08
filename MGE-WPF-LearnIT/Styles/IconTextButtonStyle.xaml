@@ -22,18 +22,4 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="OkButton" BasedOn="{StaticResource {x:Type controls:IconTextButton}}">
-        <Setter Property="Button.BorderBrush" Value="{StaticResource OkBrush}"></Setter>
-        <Setter Property="Button.Foreground" Value="{StaticResource OkBrush}"></Setter>
-    </Style>
-    <Style x:Key="CancelButton" BasedOn="{StaticResource {x:Type controls:IconTextButton}}">
-        <Style.Resources>
-            <Style TargetType="Border">
-                <Setter Property="BorderBrush" Value="{StaticResource CancelBrush}"></Setter>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Foreground" Value="{StaticResource CancelBrush}"></Setter>
-            </Style>
-        </Style.Resources>
-    </Style>
 </ResourceDictionary>

@@ -16,23 +16,19 @@ using System.Windows.Shapes;
 
 namespace MGE_WPF_LearnIT
 {
-    /// <summary>
-    /// Interaction logic for AddCardSet.xaml
-    /// </summary>
+    
     public partial class AddCardSet : Window
     {
         private ObservableCollection<CardSet> sets;
-        private ViewModel vm = new ViewModel();
-        public AddCardSet(ObservableCollection<CardSet> sets) {
-            this.sets = sets;
-            InitializeComponent();
+        private ViewModel vm = ((MainWindow)Application.Current.MainWindow).Vm;
+        public AddCardSet() {
+            this.sets = vm.Sets;
+            InitializeComponent();  
         }
 
         private void SaveCardSet_Click(object sender, RoutedEventArgs e) {
             CardSet set = new CardSet(CardSetTitle.Text);
-            sets.Add(set);
-            vm.listenToNewSet(set);
-            vm.addSetToDb(set);    
+            vm.addSet(set);    
             this.Close();
         }
 

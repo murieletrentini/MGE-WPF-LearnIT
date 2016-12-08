@@ -15,13 +15,10 @@ using System.Windows.Shapes;
 
 namespace MGE_WPF_LearnIT
 {
-    /// <summary>
-    /// Interaction logic for AddCard.xaml
-    /// </summary>
     public partial class AddCardWindow : Window
     {
         private CardSet set;
-        private ViewModel vm = new ViewModel();
+        private ViewModel vm = ((MainWindow)Application.Current.MainWindow).Vm;
 
         public AddCardWindow(CardSet set) {
             this.set = set;
@@ -30,9 +27,7 @@ namespace MGE_WPF_LearnIT
 
         private void SaveCard_Click(object sender, RoutedEventArgs e) {
             Card newCard = new Card(Front.Text, Back.Text);
-            set.addCard(newCard);
-            vm.listenToNewCard(newCard);
-            vm.addCardToDb(newCard, set);
+            vm.addCard(set, newCard);   
             this.Close();
         }
 

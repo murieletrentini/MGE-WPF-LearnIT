@@ -14,7 +14,23 @@ namespace MGE_WPF_LearnIT
 {
     public class ViewModel  : INotifyPropertyChanged
     {
-       
+        public ViewModel() {
+            using (var db = new Db()) {
+                var setsfromdb = from s in db.CardSets
+                                 select s;
+                foreach (CardSet set in setsfromdb) {
+                    sets.Add(set);
+                    var cardsFromDb = from c in db.Cards
+                                      where c.CardSetId == set.CardSetId
+                                      select c;
+                    foreach (Card card in cardsFromDb) {
+                        set.addCard(card);
+                    }
+                }
+            }
+            listenToChanges();
+        }
+
         private ObservableCollection<CardSet> sets = new ObservableCollection<CardSet>();
         public ObservableCollection<CardSet> Sets { get { return sets; } set { sets = value; } }
 
@@ -38,7 +54,7 @@ namespace MGE_WPF_LearnIT
                 handler(this, new PropertyChangedEventArgs(name));
         }
 
-        public void listenToChanges() {
+        private void listenToChanges() {
             foreach (CardSet set in sets) {
                 listenToNewSet(set);
                 foreach (Card card in set.Cards) {
@@ -47,56 +63,61 @@ namespace MGE_WPF_LearnIT
             }  
         }
         
-        public void listenToNewCard(Card card) {
+        private void listenToNewCard(Card card) {
             card.PropertyChanged += (o, a) => {
                 updateCard(card);
             };
         } 
         
-        public void listenToNewSet(CardSet set) {
+        private void listenToNewSet(CardSet set) {
             set.PropertyChanged += (o, a) => {
                 updateSet(set);
             };
         }         
 
-        public void setUpCardSets() {
-            using (var db = new Db()) {
-                var setsfromdb = from s in db.CardSets
-                                 select s;
-                foreach (CardSet set in setsfromdb) {
-                    sets.Add(set);
-                    var cardsFromDb = from c in db.Cards
-                                      where c.CardSetId == set.CardSetId
-                                      select c;
-                    foreach (Card card in cardsFromDb) {
-                        set.addCard(card);
-                    }
-                }
-            }
-            listenToChanges();                                       
-        }
-       public ObservableCollection<CardSet> getSets () {
-            return sets;
+        
+        public void addSet(CardSet set) {
+            sets.Add(set);
+            listenToNewSet(set);
+            addSetToDb(set);
         }
 
-        public void addSetToDb(CardSet set) {
+        private void addSetToDb(CardSet set) {
             using (var db = new Db()) {
                 db.CardSets.Add(set);
                 db.SaveChanges();
             }
         }
+        public void removeCurrentSet() {
+            CardSet setToRemove = CurrentSet;
+            Sets.Remove(setToRemove);
+            removeSetFromDb(setToRemove);
+        }
 
-        public void removeSetFromDb(CardSet set) {
+        private void removeSetFromDb(CardSet set) {
             using (var db = new Db()) {
                 var setToDelete = db.CardSets.First(s => s.CardSetId == set.CardSetId);
-
-                ((IObjectContextAdapter)db).ObjectContext.DeleteObject(setToDelete);
-                   
+                ((IObjectContextAdapter)db).ObjectContext.DeleteObject(setToDelete);  
                 db.SaveChanges();
             } 
         }
 
-        public void addCardToDb(Card card, CardSet set) {
+        public void updateSet(CardSet set) {
+            using (var db = new Db()) {
+                if (set.CardSetId != 0) {
+                    db.Entry(set).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public void addCard(CardSet set, Card card) {
+            set.addCard(card);
+            listenToNewCard(card);
+            addCardToDb(card, set);
+        }
+
+        private void addCardToDb(Card card, CardSet set) {
             using (var db = new Db()) {
                 card.CardSetId = set.CardSetId;
                 db.Cards.Add(card);
@@ -110,8 +131,7 @@ namespace MGE_WPF_LearnIT
                 ((IObjectContextAdapter)db).ObjectContext.DeleteObject(cardToDelete); 
                 db.SaveChanges();
             }
-        }
-
+        }     
 
         public void updateCard(Card card) {
             using (var db = new Db()) {    
@@ -119,14 +139,6 @@ namespace MGE_WPF_LearnIT
                     db.Entry(card).State = EntityState.Modified;
                     db.SaveChanges();
                 }     
-            }
-        }
-        public void updateSet(CardSet set) {
-            using (var db = new Db()) { 
-                if (set.CardSetId != 0) {
-                    db.Entry(set).State = EntityState.Modified;
-                    db.SaveChanges();
-                }      
             }
         }
     }

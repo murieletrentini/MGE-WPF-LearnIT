@@ -10,16 +10,8 @@ using System.Windows;
 
 namespace MGE_WPF_LearnIT
 {
-    /// <summary>
-    /// Interaktionslogik für "App.xaml"
-    /// </summary>
     public partial class App : Application
     {      
-        public App() {
-            
-        }
-
-       
       
     }
 }

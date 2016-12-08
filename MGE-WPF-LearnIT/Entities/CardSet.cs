@@ -19,6 +19,8 @@ namespace MGE_WPF_LearnIT.Entities
         [NotMapped]
         public ObservableCollection<Card> Cards { get { return cards; } set { cards = value; } }
 
+        //Default constructor needed, to initialize Data from Db!
+        public CardSet() { }
         public CardSet(String name) {
             Name = name;
             cards.CollectionChanged += cardsChanged;

@@ -47,6 +47,7 @@ namespace MGE_WPF_LearnIT.Entities
                 }
             }
         }
+
         [Column("isCorrect")]
         public bool IsCorrect { get; set; }
 
