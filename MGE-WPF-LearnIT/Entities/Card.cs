@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace MGE_WPF_LearnIT.Entities
 {
     [Table("cards")]
-    public class Card : INotifyPropertyChanged
+    public class Card : BindableBase
     {
         public Card(String front, String back) {
             Front = front;
@@ -30,8 +30,8 @@ namespace MGE_WPF_LearnIT.Entities
             get { return front; }
             set {
                 if (value != front) {
-                    front = value;
-                    OnPropertyChanged(nameof(front));
+                    front = value;                       
+                    SetProperty(ref front, value, nameof(front));
                 }
             }
         }
@@ -42,8 +42,8 @@ namespace MGE_WPF_LearnIT.Entities
             get { return back; }
             set {
                 if (value != back) {
-                    back = value;
-                    OnPropertyChanged(nameof(back));
+                    back = value;                       
+                    SetProperty(ref back, value, nameof(back));
                 }
             }
         }
@@ -55,12 +55,5 @@ namespace MGE_WPF_LearnIT.Entities
 
         [ForeignKey(nameof(CardSetId))]
         public virtual CardSet CardSet { get; set; }
-        
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(String name) { 
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(name)); 
-        }
     }
 }

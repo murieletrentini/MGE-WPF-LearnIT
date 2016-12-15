@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace MGE_WPF_LearnIT.Entities
 {
     [Table("cardsets")]
-    public class CardSet : INotifyPropertyChanged
+    public class CardSet : BindableBase
     {
         [NotMapped]
         private ObservableCollection<Card> cards = new ObservableCollection<Card>();
@@ -39,14 +39,14 @@ namespace MGE_WPF_LearnIT.Entities
             set
             {
                 if (value != name) {
-                    name = value;
-                    OnPropertyChanged(nameof(name));  
+                    name = value;                         
+                    SetProperty(ref name, value, nameof(name));
                 }
             }
         }                  
 
-        private void cardsChanged(object sender, NotifyCollectionChangedEventArgs e) {
-            OnPropertyChanged(nameof(cardAmount));
+        private void cardsChanged(object sender, NotifyCollectionChangedEventArgs e) {  
+            SetProperty(ref cardAmount, cardAmount, nameof(cardAmount));
         }
        
         public void addCard(Card card) {
@@ -72,14 +72,6 @@ namespace MGE_WPF_LearnIT.Entities
                 }
                 return counter;
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(String name) {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(name));
-        }
-       
+        }        
     }
 }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MGE_WPF_LearnIT
 {
-    public class ViewModel  : INotifyPropertyChanged
+    public class ViewModel  : BindableBase
     {
         public ViewModel() {
             using (var db = new Db()) {
@@ -42,25 +42,30 @@ namespace MGE_WPF_LearnIT
             {
                 if (value != currentSet) {
                     currentSet = value;
-                    OnPropertyChanged(nameof(currentSet));
+                    SetProperty(ref currentSet, value, nameof(currentSet));
                 }
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(String name) {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(name));
-        }
+              
 
         private void listenToChanges() {
             foreach (CardSet set in sets) {
-                listenToNewSet(set);
+                listentoNewEntity(set);
                 foreach (Card card in set.Cards) {
-                    listenToNewCard(card);
+                    listentoNewEntity(card);
                 }
             }  
+        }
+
+        private void listentoNewEntity(BindableBase newItem) {
+            newItem.PropertyChanged += (o, a) => {
+                if (newItem is Card) {
+                    updateCard((Card) newItem);
+                } else {
+                    updateSet((CardSet)newItem);
+                }
+               
+            };
         }
         
         private void listenToNewCard(Card card) {
